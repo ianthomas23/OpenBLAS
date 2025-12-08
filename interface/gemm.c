@@ -253,7 +253,7 @@ void NAME(char *TRANSA, char *TRANSB,
 	  IFLOAT *a, blasint *ldA,
 	  IFLOAT *b, blasint *ldB,
 	  FLOAT *beta,
-	  FLOAT *c, blasint *ldC){
+	  FLOAT *c, blasint *ldC, int dummy_len0, int dummy_len1){
 
   blas_arg_t args;
 
@@ -417,7 +417,7 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_TRANSPOSE TransA, enum CBLAS_TRANS
 
   PRINT_DEBUG_CNAME;
 
-#if !defined(COMPLEX) && !defined(DOUBLE) && !defined(BFLOAT16) 
+#if !defined(COMPLEX) && !defined(DOUBLE) && !defined(BFLOAT16)
 #if defined(ARCH_x86) && (defined(USE_SGEMM_KERNEL_DIRECT)||defined(DYNAMIC_ARCH))
 #if defined(DYNAMIC_ARCH)
   if (support_avx512() )

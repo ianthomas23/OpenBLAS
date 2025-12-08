@@ -61,7 +61,7 @@ static blasint (*trtrs_parallel[])(blas_arg_t *, BLASLONG *, BLASLONG *, FLOAT *
 #endif
 
 int NAME(char *UPLO, char* TRANS, char* DIAG, blasint *N, blasint *NRHS, FLOAT *a, blasint *ldA,
-  FLOAT *b, blasint *ldB, blasint *Info){
+  FLOAT *b, blasint *ldB, blasint *Info, size_t dummy_len0, size_t dummy_len1, size_t dummy_len2){
 
     char uplo_arg = *UPLO;
     char trans_arg = *TRANS;

@@ -37,8 +37,9 @@
 /*********************************************************************/
 
 #include <ctype.h>
+#include <stddef.h>
 
-int NAME(const char *A, const char *B){
+int NAME(const char *A, const char *B, size_t dummy_len0, size_t dummy_len1){
 
   char a = *A;
   char b = *B;

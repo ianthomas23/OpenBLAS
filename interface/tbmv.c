@@ -83,7 +83,7 @@ static int (*tbmv_thread[])(BLASLONG, BLASLONG, FLOAT *, BLASLONG, FLOAT *, BLAS
 
 void NAME(char *UPLO, char *TRANS, char *DIAG,
 	 blasint *N, blasint *K,
-	 FLOAT *a, blasint *LDA, FLOAT *x, blasint *INCX){
+	 FLOAT *a, blasint *LDA, FLOAT *x, blasint *INCX, size_t dummy_len0, size_t dummy_len1, size_t dummy_len2){
 
   char uplo_arg  = *UPLO;
   char trans_arg = *TRANS;

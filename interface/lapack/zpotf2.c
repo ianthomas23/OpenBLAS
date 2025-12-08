@@ -61,7 +61,7 @@ static blasint (*potf2[])(blas_arg_t *, BLASLONG *, BLASLONG *, FLOAT *, FLOAT *
 #endif
   };
 
-int NAME(char *UPLO, blasint *N, FLOAT *a, blasint *ldA, blasint *Info){
+int NAME(char *UPLO, blasint *N, FLOAT *a, blasint *ldA, blasint *Info, size_t dummy_len0){
 
   blas_arg_t args;
 

@@ -74,7 +74,7 @@ static int (*spr2_thread[])(BLASLONG, FLOAT *, FLOAT *, BLASLONG, FLOAT *, BLASL
 #endif
 
 void NAME(char *UPLO, blasint *N, FLOAT  *ALPHA,
-	 FLOAT  *x, blasint *INCX, FLOAT *y, blasint *INCY, FLOAT *a){
+	 FLOAT  *x, blasint *INCX, FLOAT *y, blasint *INCY, FLOAT *a, size_t dummy_len){
 
   char uplo_arg = *UPLO;
   blasint n		= *N;

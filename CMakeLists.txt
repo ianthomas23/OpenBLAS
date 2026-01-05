@@ -744,8 +744,8 @@ endif()
 endif()
 
 # Install pkg-config files
-configure_file(${PROJECT_SOURCE_DIR}/cmake/openblas.pc.in ${PROJECT_BINARY_DIR}/openblas${SUFFIX64}.pc @ONLY)
-install (FILES ${PROJECT_BINARY_DIR}/openblas${SUFFIX64}.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig/)
+configure_file(${PROJECT_SOURCE_DIR}/cmake/openblas.pc.in ${PROJECT_BINARY_DIR}/openblas-flang${SUFFIX64}.pc @ONLY)
+install (FILES ${PROJECT_BINARY_DIR}/openblas-flang${SUFFIX64}.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig/)
 
 
 set(PN OpenBLAS)

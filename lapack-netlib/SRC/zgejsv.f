@@ -612,7 +612,8 @@
       DOUBLE PRECISION   RDUMMY(1)
 *
 *     .. Intrinsic Functions ..
-      INTRINSIC ABS, DCMPLX, CONJG, DLOG, MAX, MIN, DBLE, NINT, SQRT
+      INTRINSIC ABS, DCMPLX, CONJG, DLOG, MAX, MIN, DBLE, SQRT, ANINT,
+     $          INT
 *     ..
 *     .. External Functions ..
       DOUBLE PRECISION      DLAMCH, DZNRM2
@@ -1545,7 +1546,7 @@
      $                N, V, LDV, CWORK, LWORK, RWORK, LRWORK, INFO )
 *
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
 *
 *
       ELSE IF ( ( RSVEC .AND. ( .NOT. LSVEC ) .AND. ( .NOT. JRACC ) )
@@ -1566,7 +1567,7 @@
             CALL ZGESVJ( 'L','U','N', N, NR, V, LDV, SVA, NR, A, LDA,
      $                  CWORK, LWORK, RWORK, LRWORK, INFO )
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
 
          ELSE
 *
@@ -1589,7 +1590,7 @@
             CALL ZGESVJ( 'L', 'U','N', NR, NR, V,LDV, SVA, NR, U,
      $                  LDU, CWORK(N+1), LWORK-N, RWORK, LRWORK, INFO )
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
             IF ( NR .LT. N ) THEN
                CALL ZLASET( 'A',N-NR, NR, CZERO,CZERO, V(NR+1,1),
      $                      LDV )
@@ -1621,7 +1622,7 @@
          CALL ZGESVJ( 'U','N','V', N, N, A, LDA, SVA, N, V, LDV,
      $               CWORK, LWORK, RWORK, LRWORK, INFO )
           SCALEM  = RWORK(1)
-          NUMRANK = NINT(RWORK(2))
+          NUMRANK = INT( ANINT(RWORK(2)) )
           CALL ZLAPMR( .FALSE., N, N, V, LDV, IWORK )
 *
       ELSE IF ( LSVEC .AND. ( .NOT. RSVEC ) ) THEN
@@ -1648,7 +1649,7 @@
          CALL ZGESVJ( 'L', 'U', 'N', NR,NR, U, LDU, SVA, NR, A,
      $        LDA, CWORK(N+1), LWORK-N, RWORK, LRWORK, INFO )
          SCALEM  = RWORK(1)
-         NUMRANK = NINT(RWORK(2))
+         NUMRANK = INT( ANINT(RWORK(2)) )
 *
          IF ( NR .LT. M ) THEN
             CALL ZLASET( 'A',  M-NR, NR,CZERO, CZERO, U(NR+1,1),
@@ -1877,7 +1878,7 @@
      $              CWORK(2*N+N*NR+NR+1),LWORK-2*N-N*NR-NR,RWORK,
      $              LRWORK, INFO )
                SCALEM  = RWORK(1)
-               NUMRANK = NINT(RWORK(2))
+               NUMRANK = INT( ANINT(RWORK(2)) )
                DO 3970 p = 1, NR
                   CALL ZCOPY(  NR, V(1,p), 1, U(1,p), 1 )
                   CALL ZDSCAL( NR, SVA(p),    V(1,p), 1 )
@@ -1921,7 +1922,7 @@
      $              LDU, CWORK(2*N+N*NR+NR+1), LWORK-2*N-N*NR-NR,
      $              RWORK, LRWORK, INFO )
                SCALEM  = RWORK(1)
-               NUMRANK = NINT(RWORK(2))
+               NUMRANK = INT( ANINT(RWORK(2)) )
                DO 3870 p = 1, NR
                   CALL ZCOPY( NR, V(1,p), 1, U(1,p), 1 )
                   CALL ZDSCAL( NR, SVA(p),    U(1,p), 1 )
@@ -1964,7 +1965,7 @@
      $              LDU, CWORK(2*N+N*NR+NR+1), LWORK-2*N-N*NR-NR,
      $                         RWORK, LRWORK, INFO )
                SCALEM  = RWORK(1)
-               NUMRANK = NINT(RWORK(2))
+               NUMRANK = INT( ANINT(RWORK(2)) )
                IF ( NR .LT. N ) THEN
                   CALL ZLASET( 'A',N-NR,NR,CZERO,CZERO,V(NR+1,1),
      $                         LDV )
@@ -2063,7 +2064,7 @@
      $       INFO )
 *
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
             DO 6970 p = 1, N
                CALL ZCOPY( N, CWORK(N+(p-1)*N+1), 1, U(1,p), 1 )
                CALL ZDSCAL( N, SVA(p), CWORK(N+(p-1)*N+1), 1 )
@@ -2170,7 +2171,7 @@
      $        N, V, LDV, CWORK(2*N+N*NR+1), LWORK-2*N-N*NR,
      $         RWORK, LRWORK, INFO )
          SCALEM  = RWORK(1)
-         NUMRANK = NINT(RWORK(2))
+         NUMRANK = INT( ANINT(RWORK(2)) )
 
          IF ( NR .LT. N ) THEN
             CALL ZLASET( 'A',N-NR,NR,CZERO,CZERO,V(NR+1,1),LDV )

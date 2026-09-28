@@ -168,7 +168,7 @@
       EXTERNAL           SCOPY
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          ABS, NINT, REAL
+      INTRINSIC          ABS, REAL, ANINT, INT
 *     ..
 *     .. Executable Statements ..
 *
@@ -201,7 +201,7 @@
          ELSE
             X(I) = -ONE
          END IF
-         ISGN( I ) = NINT( X( I ) )
+         ISGN( I ) = INT( ANINT( X( I ) ) )
    30 CONTINUE
       KASE = 2
       ISAVE( 1 ) = 2
@@ -238,7 +238,7 @@
          ELSE
             XS = -ONE
          END IF
-         IF( NINT( XS ).NE.ISGN( I ) )
+         IF( INT( ANINT( XS ) ).NE.ISGN( I ) )
      $      GO TO 90
    80 CONTINUE
 *     REPEATED SIGN VECTOR DETECTED, HENCE ALGORITHM HAS CONVERGED.
@@ -255,7 +255,7 @@
          ELSE
             X(I) = -ONE
          END IF
-         ISGN( I ) = NINT( X( I ) )
+         ISGN( I ) = INT( ANINT( X( I ) ) )
   100 CONTINUE
       KASE = 2
       ISAVE( 1 ) = 4

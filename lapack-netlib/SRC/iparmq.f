@@ -253,7 +253,7 @@
       CHARACTER          SUBNAM*6
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          LOG, MAX, MOD, NINT, REAL
+      INTRINSIC          LOG, MAX, MOD, REAL, ANINT, INT
 *     ..
 *     .. Executable Statements ..
       IF( ( ISPEC.EQ.ISHFTS ) .OR. ( ISPEC.EQ.INWIN ) .OR.
@@ -268,7 +268,8 @@
          IF( NH.GE.60 )
      $      NS = 10
          IF( NH.GE.150 )
-     $      NS = MAX( 10, NH / NINT( LOG( REAL( NH ) ) / LOG( TWO ) ) )
+     $      NS = MAX( 10, NH / INT( ANINT( LOG( REAL( NH ) ) /
+     $           LOG( TWO ) ) ) )
          IF( NH.GE.590 )
      $      NS = 64
          IF( NH.GE.3000 )

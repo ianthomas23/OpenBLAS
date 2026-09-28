@@ -147,7 +147,7 @@
       EXTERNAL           SCOPY
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          ABS, NINT, REAL, SIGN
+      INTRINSIC          ABS, REAL, SIGN, ANINT, INT
 *     ..
 *     .. Save statement ..
       SAVE
@@ -179,7 +179,7 @@
 *
       DO 30 I = 1, N
          X( I ) = SIGN( ONE, X( I ) )
-         ISGN( I ) = NINT( X( I ) )
+         ISGN( I ) = INT( ANINT( X( I ) ) )
    30 CONTINUE
       KASE = 2
       JUMP = 2
@@ -211,7 +211,7 @@
       ESTOLD = EST
       EST = SASUM( N, V, 1 )
       DO 80 I = 1, N
-         IF( NINT( SIGN( ONE, X( I ) ) ).NE.ISGN( I ) )
+         IF( INT( ANINT( SIGN( ONE, X( I ) ) ) ).NE.ISGN( I ) )
      $      GO TO 90
    80 CONTINUE
 *     REPEATED SIGN VECTOR DETECTED, HENCE ALGORITHM HAS CONVERGED.
@@ -224,7 +224,7 @@
 *
       DO 100 I = 1, N
          X( I ) = SIGN( ONE, X( I ) )
-         ISGN( I ) = NINT( X( I ) )
+         ISGN( I ) = INT( ANINT( X( I ) ) )
   100 CONTINUE
       KASE = 2
       JUMP = 4

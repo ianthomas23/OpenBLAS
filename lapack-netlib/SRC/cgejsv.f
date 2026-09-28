@@ -609,7 +609,8 @@
       REAL    RDUMMY(1)
 *
 *     .. Intrinsic Functions ..
-      INTRINSIC ABS, CMPLX, CONJG, ALOG, MAX, MIN, REAL, NINT, SQRT
+      INTRINSIC ABS, CMPLX, CONJG, ALOG, MAX, MIN, REAL, SQRT, ANINT,
+     $          INT
 *     ..
 *     .. External Functions ..
       REAL      SLAMCH, SCNRM2
@@ -1543,7 +1544,7 @@
      $                N, V, LDV, CWORK, LWORK, RWORK, LRWORK, INFO )
 *
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
 *
 *
       ELSE IF ( ( RSVEC .AND. ( .NOT. LSVEC ) .AND. ( .NOT. JRACC ) ) 
@@ -1564,7 +1565,7 @@
             CALL CGESVJ( 'L','U','N', N, NR, V, LDV, SVA, NR, A, LDA,
      $                  CWORK, LWORK, RWORK, LRWORK, INFO )
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
 
          ELSE
 *
@@ -1587,7 +1588,7 @@
             CALL CGESVJ( 'L', 'U','N', NR, NR, V,LDV, SVA, NR, U,
      $                  LDU, CWORK(N+1), LWORK-N, RWORK, LRWORK, INFO )
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
             IF ( NR .LT. N ) THEN
                CALL CLASET( 'A',N-NR, NR, CZERO,CZERO, V(NR+1,1),
      $                      LDV )
@@ -1619,7 +1620,7 @@
          CALL CGESVJ( 'U','N','V', N, N, A, LDA, SVA, N, V, LDV,
      $               CWORK, LWORK, RWORK, LRWORK, INFO )
           SCALEM  = RWORK(1)
-          NUMRANK = NINT(RWORK(2))
+          NUMRANK = INT( ANINT(RWORK(2)) )
           CALL CLAPMR( .FALSE., N, N, V, LDV, IWORK )
 *
       ELSE IF ( LSVEC .AND. ( .NOT. RSVEC ) ) THEN
@@ -1646,7 +1647,7 @@
          CALL CGESVJ( 'L', 'U', 'N', NR,NR, U, LDU, SVA, NR, A,
      $        LDA, CWORK(N+1), LWORK-N, RWORK, LRWORK, INFO )
          SCALEM  = RWORK(1)
-         NUMRANK = NINT(RWORK(2))
+         NUMRANK = INT( ANINT(RWORK(2)) )
 *
          IF ( NR .LT. M ) THEN
             CALL CLASET( 'A',  M-NR, NR,CZERO, CZERO, U(NR+1,1),
@@ -1875,7 +1876,7 @@
      $              CWORK(2*N+N*NR+NR+1),LWORK-2*N-N*NR-NR,RWORK,
      $              LRWORK, INFO )
                SCALEM  = RWORK(1)
-               NUMRANK = NINT(RWORK(2))
+               NUMRANK = INT( ANINT(RWORK(2)) )
                DO 3970 p = 1, NR
                   CALL CCOPY(  NR, V(1,p), 1, U(1,p), 1 )
                   CALL CSSCAL( NR, SVA(p),    V(1,p), 1 )
@@ -1919,7 +1920,7 @@
      $              LDU, CWORK(2*N+N*NR+NR+1), LWORK-2*N-N*NR-NR,
      $              RWORK, LRWORK, INFO )
                SCALEM  = RWORK(1)
-               NUMRANK = NINT(RWORK(2))
+               NUMRANK = INT( ANINT(RWORK(2)) )
                DO 3870 p = 1, NR
                   CALL CCOPY( NR, V(1,p), 1, U(1,p), 1 )
                   CALL CSSCAL( NR, SVA(p),    U(1,p), 1 )
@@ -1962,7 +1963,7 @@
      $              LDU, CWORK(2*N+N*NR+NR+1), LWORK-2*N-N*NR-NR,
      $                         RWORK, LRWORK, INFO )
                SCALEM  = RWORK(1)
-               NUMRANK = NINT(RWORK(2))
+               NUMRANK = INT( ANINT(RWORK(2)) )
                IF ( NR .LT. N ) THEN
                   CALL CLASET( 'A',N-NR,NR,CZERO,CZERO,V(NR+1,1),
      $                         LDV )
@@ -2061,7 +2062,7 @@
      $       INFO )
 *
             SCALEM  = RWORK(1)
-            NUMRANK = NINT(RWORK(2))
+            NUMRANK = INT( ANINT(RWORK(2)) )
             DO 6970 p = 1, N
                CALL CCOPY( N, CWORK(N+(p-1)*N+1), 1, U(1,p), 1 )
                CALL CSSCAL( N, SVA(p), CWORK(N+(p-1)*N+1), 1 )
@@ -2168,7 +2169,7 @@
      $        N, V, LDV, CWORK(2*N+N*NR+1), LWORK-2*N-N*NR,
      $         RWORK, LRWORK, INFO )
          SCALEM  = RWORK(1)
-         NUMRANK = NINT(RWORK(2))
+         NUMRANK = INT( ANINT(RWORK(2)) )
 
          IF ( NR .LT. N ) THEN
             CALL CLASET( 'A',N-NR,NR,CZERO,CZERO,V(NR+1,1),LDV )

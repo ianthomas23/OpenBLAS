@@ -503,7 +503,7 @@
      $        NOSCAL, ROWPIV, RSVEC,  TRANSP
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC ABS, ALOG, MAX, MIN, FLOAT, NINT, SIGN, SQRT
+      INTRINSIC ABS, ALOG, MAX, MIN, FLOAT, SIGN, SQRT, ANINT, INT
 *     ..
 *     .. External Functions ..
       REAL      SLAMCH, SNRM2
@@ -1133,7 +1133,7 @@
      $                      N, V, LDV, WORK, LWORK, INFO )
 *
             SCALEM  = WORK(1)
-            NUMRANK = NINT(WORK(2))
+            NUMRANK = INT( ANINT(WORK(2)) )
 *
 *
       ELSE IF ( RSVEC .AND. ( .NOT. LSVEC ) ) THEN
@@ -1152,7 +1152,7 @@
             CALL SGESVJ( 'L','U','N', N, NR, V,LDV, SVA, NR, A,LDA,
      $                  WORK, LWORK, INFO )
             SCALEM  = WORK(1)
-            NUMRANK = NINT(WORK(2))
+            NUMRANK = INT( ANINT(WORK(2)) )
 
          ELSE
 *
@@ -1177,7 +1177,7 @@
             CALL SGESVJ( 'Lower', 'U','N', NR, NR, V,LDV, SVA, NR, U,
      $                  LDU, WORK(N+1), LWORK-N, INFO )
             SCALEM  = WORK(N+1)
-            NUMRANK = NINT(WORK(N+2))
+            NUMRANK = INT( ANINT(WORK(N+2)) )
             IF ( NR .LT. N ) THEN
                CALL SLASET( 'A',N-NR, NR, ZERO,ZERO, V(NR+1,1),
      $                      LDV )
@@ -1223,7 +1223,7 @@
          CALL SGESVJ( 'Lower', 'U', 'N', NR,NR, U, LDU, SVA, NR, A,
      $        LDA, WORK(N+1), LWORK-N, INFO )
          SCALEM  = WORK(N+1)
-         NUMRANK = NINT(WORK(N+2))
+         NUMRANK = INT( ANINT(WORK(N+2)) )
 *
          IF ( NR .LT. M ) THEN
             CALL SLASET( 'A',  M-NR, NR,ZERO, ZERO, U(NR+1,1), LDU )
@@ -1437,7 +1437,7 @@
                CALL SGESVJ( 'L','U','N',NR,NR,V,LDV,SVA,NR,U,
      $              LDU,WORK(2*N+N*NR+NR+1),LWORK-2*N-N*NR-NR,INFO )
                SCALEM  = WORK(2*N+N*NR+NR+1)
-               NUMRANK = NINT(WORK(2*N+N*NR+NR+2))
+               NUMRANK = INT( ANINT(WORK(2*N+N*NR+NR+2)) )
                DO 3970 p = 1, NR
                   CALL SCOPY( NR, V(1,p), 1, U(1,p), 1 )
                   CALL SSCAL( NR, SVA(p),    V(1,p), 1 )
@@ -1481,7 +1481,7 @@
      $                      U,
      $              LDU, WORK(2*N+N*NR+NR+1), LWORK-2*N-N*NR-NR, INFO )
                SCALEM  = WORK(2*N+N*NR+NR+1)
-               NUMRANK = NINT(WORK(2*N+N*NR+NR+2))
+               NUMRANK = INT( ANINT(WORK(2*N+N*NR+NR+2)) )
                DO 3870 p = 1, NR
                   CALL SCOPY( NR, V(1,p), 1, U(1,p), 1 )
                   CALL SSCAL( NR, SVA(p),    U(1,p), 1 )
@@ -1521,7 +1521,7 @@
      $                      U,
      $              LDU, WORK(2*N+N*NR+NR+1), LWORK-2*N-N*NR-NR, INFO )
                SCALEM  = WORK(2*N+N*NR+NR+1)
-               NUMRANK = NINT(WORK(2*N+N*NR+NR+2))
+               NUMRANK = INT( ANINT(WORK(2*N+N*NR+NR+2)) )
                IF ( NR .LT. N ) THEN
                   CALL SLASET( 'A',N-NR,NR,ZERO,ZERO,V(NR+1,1),LDV )
                   CALL SLASET( 'A',NR,N-NR,ZERO,ZERO,V(1,NR+1),LDV )
@@ -1615,7 +1615,7 @@
      $           N, U, LDU, WORK(N+N*N+1), LWORK-N-N*N, INFO )
 *
             SCALEM  = WORK(N+N*N+1)
-            NUMRANK = NINT(WORK(N+N*N+2))
+            NUMRANK = INT( ANINT(WORK(N+N*N+2)) )
             DO 6970 p = 1, N
                CALL SCOPY( N, WORK(N+(p-1)*N+1), 1, U(1,p), 1 )
                CALL SSCAL( N, SVA(p), WORK(N+(p-1)*N+1), 1 )
@@ -1714,7 +1714,7 @@
          CALL SGESVJ( 'G', 'U', 'V', NR, NR, U, LDU, SVA,
      $        N, V, LDV, WORK(2*N+N*NR+1), LWORK-2*N-N*NR, INFO )
          SCALEM  = WORK(2*N+N*NR+1)
-         NUMRANK = NINT(WORK(2*N+N*NR+2))
+         NUMRANK = INT( ANINT(WORK(2*N+N*NR+2)) )
 
          IF ( NR .LT. N ) THEN
             CALL SLASET( 'A',N-NR,NR,ZERO,ZERO,V(NR+1,1),LDV )

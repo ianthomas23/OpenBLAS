@@ -207,7 +207,7 @@
       EXTERNAL           CGEMM, CGEMV, CLARFG, CSWAP
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          ABS, CONJG, MAX, MIN, NINT, REAL, SQRT
+      INTRINSIC          ABS, CONJG, MAX, MIN, REAL, SQRT, ANINT, INT
 *     ..
 *     .. External Functions ..
       INTEGER            ISAMAX
@@ -349,7 +349,7 @@
 *
    60 CONTINUE
       IF( LSTICC.GT.0 ) THEN
-         ITEMP = NINT( VN2( LSTICC ) )
+         ITEMP = INT( ANINT( VN2( LSTICC ) ) )
          VN1( LSTICC ) = SCNRM2( M-RK, A( RK+1, LSTICC ), 1 )
 *
 *        NOTE: The computation of VN1( LSTICC ) relies on the fact that

@@ -206,7 +206,7 @@
       EXTERNAL           ZGEMM, ZGEMV, ZLARFG, ZSWAP
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, DCONJG, MAX, MIN, NINT, SQRT
+      INTRINSIC          ABS, DBLE, DCONJG, MAX, MIN, SQRT, ANINT, INT
 *     ..
 *     .. External Functions ..
       INTEGER            IDAMAX
@@ -348,7 +348,7 @@
 *
    60 CONTINUE
       IF( LSTICC.GT.0 ) THEN
-         ITEMP = NINT( VN2( LSTICC ) )
+         ITEMP = INT( ANINT( VN2( LSTICC ) ) )
          VN1( LSTICC ) = DZNRM2( M-RK, A( RK+1, LSTICC ), 1 )
 *
 *        NOTE: The computation of VN1( LSTICC ) relies on the fact that

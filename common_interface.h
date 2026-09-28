@@ -46,7 +46,7 @@ extern "C" {
 	/* Assume C declarations for C++ */
 #endif  /* __cplusplus */
 
-void    BLASFUNC(xerbla)(char *, blasint *info, blasint);
+void    BLASFUNC(xerbla)(char *, blasint *info, size_t);
 
 void    openblas_set_num_threads_(int *);
 

@@ -51,15 +51,15 @@
 #define MSGFMT " ** On entry to %6.*s parameter number %2lld had an illegal value\n"
 
 static size_t openblas_xerbla_name_length(const char *message,
-                                          blasint length) {
+                                          size_t length) {
   const char *terminator;
 
-  if (message == NULL || length <= 0) return 0;
+  if (message == NULL || length == 0) return 0;
 
-  terminator = memchr(message, '\0', (size_t)length);
+  terminator = memchr(message, '\0', length);
   if (terminator != NULL) return (size_t)(terminator - message);
 
-  return (size_t)length;
+  return length;
 }
 
 static void openblas_xerbla_default(const char *message, const blasint *info,
@@ -88,7 +88,7 @@ openblas_set_xerbla(openblas_xerbla_handler handler) {
 }
 
 static void openblas_xerbla_dispatch(char *message, blasint *info,
-                                     blasint length) {
+                                     size_t length) {
   openblas_xerbla_handler handler;
   size_t name_length = openblas_xerbla_name_length(message, length);
 
@@ -100,14 +100,14 @@ static void openblas_xerbla_dispatch(char *message, blasint *info,
 }
 
 #ifdef __ELF__
-void __xerbla(char *message, blasint *info, blasint length) {
+void __xerbla(char *message, blasint *info, size_t length) {
   openblas_xerbla_dispatch(message, info, length);
 }
 
-void BLASFUNC(xerbla)(char *, blasint *, blasint)
+void BLASFUNC(xerbla)(char *, blasint *, size_t)
   __attribute__ ((weak, alias ("__xerbla")));
 #else
-void BLASFUNC(xerbla)(char *message, blasint *info, blasint length) {
+void BLASFUNC(xerbla)(char *message, blasint *info, size_t length) {
   openblas_xerbla_dispatch(message, info, length);
 }
 #endif
